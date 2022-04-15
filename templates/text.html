@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en" class="html">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/ed450e303b.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/CSS/text.css">
+    <title>Website</title>
+</head>
+<body class="body">
+    <header>
+        <nav class="icon">
+            <a href="http://"><i class="icc far fa-envelope fa-3x"></i></a>
+            <a href="http://"><i class="icc fab fa-facebook fa-3x"></i></a>
+            <a href="https://twitter.com"><i class="icc fab fa-twitter-square fa-3x"></i></a>
+        </nav>
+    </header>
+    <section class="text">
+        <div class="div1">
+        </div> &nbsp; &nbsp;
+        <div class="div2 divScroll">
+            <div class="extra"></div>
+            <div id="messages"></div>
+            <section>
+                <p class="change" id="change"> </p>
+                <div class="menu">
+                    <form  method="POST" id="task-form" role="form" enctype="multipart/form-data" autocomplete="off">
+                        <button type="button"  name="close" class="close"  > &nbsp;CONNECT &nbsp;</button>
+                        <div class="text_div">
+                            {% csrf_token %}
+                            <input autocomplete="off" type="text" name="message"  id="task" role="textbox" contenteditable="true"  placeholder="&nbsp; Type your message" dir="ltr">
+                        </div>
+                        <button value="Submit" type="submit"  name="submit"  class="submit"><i class="send fas fa-paper-plane fa-2x send_btn"></i></button>
+                        <input type="hidden"  name="var" id="myvar">
+                    </form> 
+                </div>
+            </section>
+        </div>
+        <div class="lock"><br>
+            <div class="lock2">
+                <i class="fa-3x fas fa-lock">  Let's have Fun </i><br><br>
+                {% block content %}
+                <form method="post" id="captchaa" >
+                    {% csrf_token %}
+                    {{ form.as_p }}
+        
+                    <script src='https://www.google.com/recaptcha/api.js'></script>
+                    <div class="g-recaptcha" name="g-recaptcha-response" data-sitekey="6LekCpUeAAAAAI2Juw52vAmgVlv9mDP6UMAx659C"></div>
+                    <div id='recaptcha_image' width= '200' class='recaptcha_image'></div><br>
+        
+                    <button type="button" name="btn" class="btn btn-primary">Continue..</button>
+                </form>
+                {% endblock %}
+            </div>
+        </div>
+    </section>
+    
+    <!-- <script>
+        $(document).ready(function(){
+            $.ajax({
+                type: 'GET',
+                url:'{% url "home" %}',
+                success:function(response){
+                    // $("#lblName").empty();
+                    for (var key in response.messages)
+                    {
+                    var temp="<div>"+'hello'+"</div>"
+                    $("#lblName").append(temp);
+                        // console.log('hellllo')
+                    }
+                    // console.log(response.messages[key])
+                },
+                error:function(response){
+                    alert('error occured')
+                }
+            });
+        })
+    </script> -->
+
+    <script type="text/javascript">
+        $(document).on('submit',function(e){
+            e.preventDefault();
+            $.ajax({
+                type:'POST',
+                url:'{% url "texting" %}',
+                data:
+                {
+                    task:$("#task").val(),
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+                },
+                // success:function(data){
+                //     alert('Saved',data);
+                // }
+                })
+            });
+    </script>
+
+
+
+    <script type="text/javascript">
+        $('.btn').click(function() {
+            var str=document.getElementsByClassName("g-recaptcha").value;
+            $.ajax({               
+                type:'POST',
+                url:'{% url "home"%}',
+                data:
+                {
+                    'task':str,
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+                }
+            })
+            var str =($("#g-recaptcha").val())
+            // if (str==True){
+            $('.lock').hide().css('visibility','hidden');
+                // } 
+            // else{
+            //     alert('wrong');
+            // }
+            // window.alert(str);
+        });
+    </script>
+    <script type="text/javascript">
+        $('.close').click(function(e) {
+            e.preventDefault();
+            $.ajax({
+                type:'GET',
+                url:'{% url "ip" %}',
+                // success:function(data){
+                //     alert(data);
+                // }
+                success: function(e){
+                document.getElementById('change').innerHTML="You are now Connected";
+            }
+            })
+            document.getElementById('change').innerHTML="Connecting...";
+            
+        })
+        
+
+    </script>
+  
+    <script type="text/javascript">
+        let url=`ws://${window.location.host}/ws/socket-server/`
+        
+        const chatSocket= new WebSocket(url)
+
+        chatSocket.onmessage=function(e){
+            let data=JSON.parse(e.data)
+            console.log('Data: ',data)
+
+            if (data.type ==='chat'){
+                let messages=document.getElementById('messages')
+                messages.insertAdjacentHTML('beforeend',`<div>
+                        <p class="msg">${data.message}</p>
+                    </div`)
+            }
+
+        }
+        let form=document.getElementById("task-form")
+        form.addEventListener('submit',(e)=>{
+            e.preventDefault()
+            $('#change').hide().css('visibility','hidden');
+            let message=e.target.message.value
+            chatSocket.send(JSON.stringify({
+                'message':message
+            }))
+            form.reset()
+        })
+    </script>
+
+
+</body>
+</html>

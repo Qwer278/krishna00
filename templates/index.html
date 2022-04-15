@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/ed450e303b.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/CSS/index.css">
+    <link rel="shortcut icon" href="#">
+    <title>Website</title>
+</head>
+<body>
+    <header class="header">
+        <nav class="icon">
+            <a href="http://"><i class="far fa-envelope fa-3x"></i></a>
+            <a href="http://"><i class="fab fa-facebook fa-3x"></i></a>
+            <a href="https://twitter.com"><i class="fab fa-twitter-square fa-3x"></i></a>
+        </nav>
+        <div class="div" id="task-form">
+            <section class="tick">
+                <input class="checkbox"  type="checkbox" name="" id="certify">
+                <p class="p"> &nbsp; &nbsp; Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magnam <br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  accusamus, tenetur eum enim pariatur possimus.</p>
+            </section>
+            <a href="/text"><button type="button" class="btn1">Text</button></a>
+            <a href=""><button class="btn2">Video</button></a>
+            <input type="text" id="ip">
+        </div>
+    </header>
+    <!-- <script type="text/javascript">
+        $(document).on('button1','#task-form',function(e){
+            e.preventDefault();
+            $.ajax({
+                type:'POST',
+                url:'{% url "home" %}',
+                data:
+                {
+                    task:$("#task").val(),
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+                }
+                // success:function(){
+                //       alert('Saved');
+                // }
+                })
+            });
+    </script> -->
+        
+</body>
+</html>

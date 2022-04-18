@@ -35,7 +35,6 @@
                             <input autocomplete="off" type="text" name="message"  id="task" role="textbox" contenteditable="true"  placeholder="&nbsp; Type your message" dir="ltr">
                         </div>
                         <button value="Submit" type="submit"  name="submit"  class="submit"><i class="send fas fa-paper-plane fa-2x send_btn"></i></button>
-                        <input type="hidden"  name="var" id="myvar">
                     </form> 
                 </div>
             </section>
@@ -158,7 +157,6 @@
                         <p class="msg">${data.message}</p>
                     </div`)
             }
-
         }
         let form=document.getElementById("task-form")
         form.addEventListener('submit',(e)=>{

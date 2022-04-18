@@ -1,30 +1,45 @@
 from service.views import *
-from email import message
-import imp
 import json
 from channels.generic.websocket import WebsocketConsumer
 from asgiref.sync import async_to_sync
-from service.model import room,Thread
+from service.model import room,hosting
+from getmac import get_mac_address as gma
 
 class ChatConsumer(WebsocketConsumer):
     def connect(self):
-        me=''
-        other_user=''
-        thread_obj=Thread.objects.get_or_create_personal_thread(me,other_user)
-        self.room='str(room_id)'
+        me=gma()
+        try:
+            hosting.objects.get(ip=me)
 
+        except hosting.DoesNotExist:
+            ip_address = hosting.objects.create(status=1,ip=me, pub_date=datetime.datetime.now())
+            ip_address.save()
+            
+        try:
+            ip_list=hosting.objects.filter(status=1)
+            if ip_list:
+                ip_list=ip_list.exclude(ip=me)
+                ip2=random.choice(ip_list)
+                other_user=ip2
+                try:
+                    room.objects.filter(host1=me).delete()
+                    room.objects.filter(host2=me).delete()
+                    room.objects.filter(host1=other_user).delete()
+                    room.objects.filter(host2=other_user).delete()
+                except:
+                    pass
+                room.objects.create(host1=me,host2=other_user).save()
+        except:
+            pass
+
+        self.room=str(room.objects.only('room_id').get(host1=me).room_id)
+        print(self.room)
         async_to_sync(self.channel_layer.group_add)(
             self.room,
             self.channel_name
         )
         self.accept()
-        r=room.objects.create(room_id=self.room,host1=ip1,host2=ip2)
-        # room.objects.create(room_id=self.channel_name)
-
-        # self.send(text_data=json.dumps({
-        #     'type':'Connection Complete',
-        #     'message': 'You are now connected'
-        # }))
+        print(f'[{self.channel_layer}]','you are connected')
     
     def chat_message(self,event):
         message=event['message']
@@ -32,19 +47,18 @@ class ChatConsumer(WebsocketConsumer):
         self.send(text_data=json.dumps({
             'type':'chat',
             'message': message
-        }))
+       }))
 
 
     def receive(self,text_data):
         text_data_json=json.loads(text_data)
         message=text_data_json['message']
 
-        # print('message: ',message)
+        print('message: ',message)
         # self.send(text_data=json.dumps({
         #     'type':'chat',
         #     'message':message,
         # }))
-
         async_to_sync(self.channel_layer.group_send)(
             self.room,
             {
@@ -54,4 +68,4 @@ class ChatConsumer(WebsocketConsumer):
         )
 
     def disconnect(self, close_code):
-        room.objects.filter(room_id=self.channel_name).delete() 
+        room.objects.filter(room_id=self.room).delete()

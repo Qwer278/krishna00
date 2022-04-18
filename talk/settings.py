@@ -23,7 +23,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-nzc$+cynp*a1snm^y=gak_6vpfohqtx(ep#(&d48m6tv445_pd'
 CSRF_COOKIE_SECURE=True
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+import sys
+if len((sys.argv) >=2 and sys.argv[1]=='runserver'):
+    DEBUG = True
+else:
+    DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 

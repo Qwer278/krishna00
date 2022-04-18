@@ -25,7 +25,7 @@ CSRF_COOKIE_SECURE=True
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://krishna00.herokuapp.com/','localhost']
 
 
 # Application definition

@@ -7,8 +7,9 @@ from service.model import room,hosting
 from getmac import get_mac_address as gma
 
 class ChatConsumer(WebsocketConsumer):
-    async def connect(self,event):
+    def connect(self):
         self.accept()
+        print('CONNECTD>>>>>>>>')
         me=gma()
         room.objects.create(host1=me,host2=me).save()
         # try:
@@ -37,9 +38,9 @@ class ChatConsumer(WebsocketConsumer):
         self.room='1'
         # self.room=str(room.objects.only('room_id').get(host1=me).room_id)
         # print(self.room)
-        await self.send({
-            "type":"websocket.accept"
-        })
+        # self.send({
+        #     "type":"websocket.accept"
+        # })
 
         async_to_sync(self.channel_layer.group_add)(
             self.room,

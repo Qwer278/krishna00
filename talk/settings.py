@@ -52,34 +52,34 @@ WSGI_APLICATION="talk.wsgi.application"
 ASGI_APPLICATION="talk.asgi.application"
 
 
-CHANNEL_LAYERS = {
-    "default": {
-        "BACKEND": "channels_redis.core.RedisChannelLayer",
-        "CONFIG": {
-            # "hosts": [("https://krishna00.herokuapp.com/text/" )],
-            "hosts": [os.environ.get('REDIS_URL', 'redis://localhost:6379')],
-        },
-    },
-}
-
-CACHES = {
-    "default": {
-         "BACKEND": "redis_cache.RedisCache",
-         "LOCATION": os.environ.get('REDIS_URL'),
-         "OPTIONS": {
-            "CONNECTION_POOL_KWARGS": {
-                "ssl_cert_reqs": False
-            }
-        }
-    }
-}
-
-
 # CHANNEL_LAYERS = {
 #     "default": {
-#         "BACKEND": "channels.layers.InMemoryChannelLayer"
+#         "BACKEND": "channels_redis.core.RedisChannelLayer",
+#         "CONFIG": {
+#             # "hosts": [("https://krishna00.herokuapp.com/text/" )],
+#             "hosts": [os.environ.get('REDIS_URL', 'redis://localhost:6379')],
+#         },
+#     },
+# }
+
+# CACHES = {
+#     "default": {
+#          "BACKEND": "redis_cache.RedisCache",
+#          "LOCATION": os.environ.get('REDIS_URL'),
+#          "OPTIONS": {
+#             "CONNECTION_POOL_KWARGS": {
+#                 "ssl_cert_reqs": False
+#             }
+#         }
 #     }
 # }
+
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer"
+    }
+}
 
 
 MIDDLEWARE = [

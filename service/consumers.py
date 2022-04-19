@@ -10,8 +10,8 @@ class ChatConsumer(WebsocketConsumer):
     def connect(self):
         self.accept()
         print('CONNECTD>>>>>>>>')
-        me=gma()
-        room.objects.create(host1=me,host2=me).save()
+        # me=gma()
+        # room.objects.create(host1=me,host2=me).save()
         # try:
         #     hosting.objects.get(ip=me)
 
@@ -35,17 +35,17 @@ class ChatConsumer(WebsocketConsumer):
         #         room.objects.create(host1=me,host2=other_user).save()
         # except:
         #     pass
-        self.room='1'
+        # self.room='1'
         # self.room=str(room.objects.only('room_id').get(host1=me).room_id)
         # print(self.room)
         # self.send({
         #     "type":"websocket.accept"
         # })
 
-        async_to_sync(self.channel_layer.group_add)(
-            self.room,
-            self.channel_name
-        )
+        # async_to_sync(self.channel_layer.group_add)(
+        #     self.room,
+        #     self.channel_name
+        # )
         # self.accept()
         # print(f'[{self.channel_layer}]','you are connected')
     

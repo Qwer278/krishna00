@@ -9,6 +9,7 @@ from getmac import get_mac_address as gma
 class ChatConsumer(WebsocketConsumer):
     def connect(self):
         me=gma()
+        room.objects.create(host1=me,host2=me).save()
         try:
             hosting.objects.get(ip=me)
 

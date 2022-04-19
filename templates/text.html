@@ -143,9 +143,9 @@
     </script>
   
     <script type="text/javascript">
-        let url=`wss://${window.location.host}/ws/socket-server/`
+        let url="wss://${window.location.host}/ws/socket-server/"
         
-        var chatSocket= new WebSocket(url)
+        const chatSocket= new WebSocket(`wss://${window.location.host}/ws/socket-server/`)
         chatSocket.onopen=function(){
             console.log("Connected to the signaling server"); 
         };

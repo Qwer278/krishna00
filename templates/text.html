@@ -146,6 +146,7 @@
         let url=`wss://${window.location.host}/text/ws/socket-server/`
         
         const chatSocket= new WebSocket(url)
+        
         chatSocket.onopen=function(){
             console.log("Connected to the signaling server"); 
         };

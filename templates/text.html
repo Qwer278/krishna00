@@ -143,10 +143,10 @@
     </script>
   
     <script type="text/javascript">
-        var loc=window.location
-        var wsstart='wss://'
-        // let url=`wss://${window.location.host}/text/ws/socket-server/`
-        var url=wsstart+loc.host+loc.pathname
+        // var loc=window.location
+        // var wsstart='wss://'
+        let url=`wss://${window.location.host}/text/ws/socket-server/`
+        // var url=wsstart+loc.host+loc.pathname
         var chatSocket= new WebSocket(url)
 
         chatSocket.onopen=function(){

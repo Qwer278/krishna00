@@ -26,6 +26,6 @@ application = ProtocolTypeRouter({
     URLRouter(
       routing.websocket_urlpattern
     )
-  )
+  ),
   # We will add WebSocket protocol later, but for now it's just HTTP.
 })

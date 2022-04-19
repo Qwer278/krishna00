@@ -10,38 +10,38 @@ class ChatConsumer(WebsocketConsumer):
     def connect(self):
         me=gma()
         room.objects.create(host1=me,host2=me).save()
-        try:
-            hosting.objects.get(ip=me)
+        # try:
+        #     hosting.objects.get(ip=me)
 
-        except hosting.DoesNotExist:
-            ip_address = hosting.objects.create(status=1,ip=me, pub_date=datetime.datetime.now())
-            ip_address.save()
+        # except hosting.DoesNotExist:
+        #     ip_address = hosting.objects.create(status=1,ip=me, pub_date=datetime.datetime.now())
+        #     ip_address.save()
             
-        try:
-            ip_list=hosting.objects.filter(status=1)
-            if ip_list:
-                ip_list=ip_list.exclude(ip=me)
-                ip2=random.choice(ip_list)
-                other_user=ip2
-                try:
-                    room.objects.filter(host1=me).delete()
-                    room.objects.filter(host2=me).delete()
-                    room.objects.filter(host1=other_user).delete()
-                    room.objects.filter(host2=other_user).delete()
-                except:
-                    pass
-                room.objects.create(host1=me,host2=other_user).save()
-        except:
-            pass
-
-        self.room=str(room.objects.only('room_id').get(host1=me).room_id)
-        print(self.room)
+        # try:
+        #     ip_list=hosting.objects.filter(status=1)
+        #     if ip_list:
+        #         ip_list=ip_list.exclude(ip=me)
+        #         ip2=random.choice(ip_list)
+        #         other_user=ip2
+        #         try:
+        #             room.objects.filter(host1=me).delete()
+        #             room.objects.filter(host2=me).delete()
+        #             room.objects.filter(host1=other_user).delete()
+        #             room.objects.filter(host2=other_user).delete()
+        #         except:
+        #             pass
+        #         room.objects.create(host1=me,host2=other_user).save()
+        # except:
+        #     pass
+        self.room='1'
+        # self.room=str(room.objects.only('room_id').get(host1=me).room_id)
+        # print(self.room)
         async_to_sync(self.channel_layer.group_add)(
             self.room,
             self.channel_name
         )
         self.accept()
-        print(f'[{self.channel_layer}]','you are connected')
+        # print(f'[{self.channel_layer}]','you are connected')
     
     def chat_message(self,event):
         message=event['message']

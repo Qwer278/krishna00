@@ -7,7 +7,7 @@ from service.model import room,hosting
 from getmac import get_mac_address as gma
 
 class ChatConsumer(WebsocketConsumer):
-    def connect(self):
+    async def connect(self,event):
         me=gma()
         room.objects.create(host1=me,host2=me).save()
         # try:

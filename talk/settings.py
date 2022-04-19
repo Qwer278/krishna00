@@ -25,7 +25,7 @@ CSRF_COOKIE_SECURE=True
 # SECURITY WARNING: don't run with debug turned on in production!
 import sys
 # if len((sys.argv) >=2 and sys.argv[1]=='runserver'):
-DEBUG = False
+DEBUG = True
 # else:
 #     DEBUG = False
 

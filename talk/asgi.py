@@ -15,11 +15,12 @@ from channels.auth import AuthMiddlewareStack
 from service.routing import websocket_urlpattern
 from channels.security.websocket import AllowedHostsOriginValidator
 from django.urls import path
+import django
 from service.routing import websocket_urlpattern
 
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'talk.settings')
-# django.setup()
+django.setup()
 
 application = ProtocolTypeRouter({
   "https": get_asgi_application(),

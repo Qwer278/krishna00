@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'service',
     
 ]
-ASGI_APPLICATION="talk.asgi.application"
+ASGI_APPLICATION="service.routing.application"
 
 
 CHANNEL_LAYERS = {

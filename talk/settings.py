@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-
+import django_heroku
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -25,7 +25,7 @@ CSRF_COOKIE_SECURE=True
 # SECURITY WARNING: don't run with debug turned on in production!
 import sys
 # if len((sys.argv) >=2 and sys.argv[1]=='runserver'):
-DEBUG = True
+DEBUG = False
 # else:
 #     DEBUG = False
 
@@ -157,3 +157,4 @@ STATIC_ROOT= BASE_DIR / 'static'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+django_heroku.settings(locals())

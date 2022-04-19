@@ -23,10 +23,8 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'talk.settings')
 
 application = ProtocolTypeRouter({
   "https": get_asgi_application(),
-  'websocket':AllowedHostsOriginValidator(
-    AuthMiddlewareStack(
+  'websocket':AuthMiddlewareStack(
       URLRouter(websocket_urlpattern)
-    )
   )
   # We will add WebSocket protocol later, but for now it's just HTTP.
 })

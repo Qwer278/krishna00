@@ -8,8 +8,7 @@ from getmac import get_mac_address as gma
 
 class ChatConsumer(WebsocketConsumer):
     def connect(self):
-        self.accept()
-        print('CONNECTD>>>>>>>>')
+        print('CONNECTED>>>>>>>>')
         # me=gma()
         # room.objects.create(host1=me,host2=me).save()
         # try:
@@ -41,12 +40,12 @@ class ChatConsumer(WebsocketConsumer):
         # self.send({
         #     "type":"websocket.accept"
         # })
-
-        # async_to_sync(self.channel_layer.group_add)(
-        #     self.room,
-        #     self.channel_name
-        # )
-        # self.accept()
+        self.room='sss'
+        async_to_sync(self.channel_layer.group_add)(
+            self.room,
+            self.channel_name
+        )
+        self.accept()
         # print(f'[{self.channel_layer}]','you are connected')
     
     def chat_message(self,event):

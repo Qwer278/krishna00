@@ -143,8 +143,14 @@
     </script>
   
     <script type="text/javascript">
-        var url=`wss://${window.location.host}ws/socket-server/`;
-        var chatSocket= new WebSocket(url);
+        var ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
+        // var url=`wss://${window.location.host}ws/socket-server/`;
+        const chatSocket= new WebSocket(
+            ws_scheme
+            + '://'
+            + window.location.host
+            +'/ws/chat/'
+        );
 
         chatSocket.onopen=function(e){
             console.log("Connected to the signaling server"); 

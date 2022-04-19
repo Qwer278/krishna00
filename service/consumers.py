@@ -8,6 +8,7 @@ from getmac import get_mac_address as gma
 
 class ChatConsumer(WebsocketConsumer):
     async def connect(self,event):
+        self.accept()
         me=gma()
         room.objects.create(host1=me,host2=me).save()
         # try:

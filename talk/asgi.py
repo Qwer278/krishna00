@@ -14,18 +14,19 @@ from channels.routing import ProtocolTypeRouter, URLRouter
 from channels.auth import AuthMiddlewareStack
 from service.routing import websocket_urlpattern
 from channels.security.websocket import AllowedHostsOriginValidator
-import service.routing
+from django.urls import path
+from service.routing import ChatConsumer
 
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'talk.settings')
-django.setup()
+# django.setup()
 
 application = ProtocolTypeRouter({
   "https": get_asgi_application(),
   'websocket':AllowedHostsOriginValidator(
     AuthMiddlewareStack(
       URLRouter(
-        websocket_urlpattern
+        path(r'ws/socket-server/',ChatConsumer.as_asgi())
       )
     )
   )

@@ -20,6 +20,10 @@ from talk import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', views.homepage, name='index'),
+    path('text/', views.text ,name="home"),
+    path('text/chat', views.texting ,name="texting"),
+    path('text/ip', views.ip_check ,name="ip"),
     # path('',views.homepage),
     # path('text/',views.text ,name="home"),
     # path('text/chat',views.texting ,name="texting"),

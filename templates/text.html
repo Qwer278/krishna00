@@ -143,8 +143,8 @@
     </script>
   
     <script type="text/javascript">
-        let url=`wss://${window.location.host}/ws/socket-server/`
-        var chatSocket= new WebSocket(url)
+        var url=`wss://${window.location.host}/ws/socket-server/`;
+        var chatSocket= new WebSocket(url);
 
         chatSocket.onopen=function(){
             console.log("Connected to the signaling server"); 
@@ -159,8 +159,8 @@
                         <p class="msg">${data.message}</p>
                     </div`)
             }
-        }
-        let form=document.getElementById("task-form")
+        };
+        let form=document.getElementById("task-form");
         form.addEventListener('submit',(e)=>{
             e.preventDefault()
             $('#change').hide().css('visibility','hidden');
@@ -169,7 +169,7 @@
                 'message':message
             }))
             form.reset()
-        })
+        });
     </script>
 
 

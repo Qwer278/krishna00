@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'service',
     
 ]
+WSGI_APLICATION="talk.wsgi.application"
 ASGI_APPLICATION="talk.asgi.application"
 
 

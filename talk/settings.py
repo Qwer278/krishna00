@@ -55,7 +55,8 @@ CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
         "CONFIG": {
-            "hosts": [("rediss://:p628bf20dab326cedb30d4df129e9691dbb6e7e1f4486954eadbfdf77db854369@ec2-34-235-242-69.compute-1.amazonaws.com:25180']" )],
+            # "hosts": [("https://krishna00.herokuapp.com/text/" )],
+            "hosts": [os.environ.get('REDIS_URL', 'redis://localhost:6379')],
         },
     },
 }

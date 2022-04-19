@@ -18,7 +18,7 @@ import service.routing
 
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'talk.settings')
-# django.setup()
+django.setup()
 
 application = ProtocolTypeRouter({
   "https": get_asgi_application(),

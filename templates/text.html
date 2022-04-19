@@ -144,7 +144,7 @@
   
     <script type="text/javascript">
         let url=`ws://${window.location.host}/ws/socket-server/`
-        var chatSocket= new WebSocket(url)
+        var chatSocket= new ReconnectingWebSocket(url)
 
         chatSocket.onopen=function(){
             console.log("Connected to the signaling server"); 

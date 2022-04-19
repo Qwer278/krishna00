@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+import os
 from pathlib import Path
 import django_heroku
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -54,9 +55,21 @@ CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
         "CONFIG": {
-            "hosts": [("https://krishna00.herokuapp.com/text/" )],
+            "hosts": [("rediss://:p628bf20dab326cedb30d4df129e9691dbb6e7e1f4486954eadbfdf77db854369@ec2-34-235-242-69.compute-1.amazonaws.com:25180']" )],
         },
     },
+}
+
+CACHES = {
+    "default": {
+         "BACKEND": "redis_cache.RedisCache",
+         "LOCATION": os.environ.get('REDIS_URL'),
+         "OPTIONS": {
+            "CONNECTION_POOL_KWARGS": {
+                "ssl_cert_reqs": False
+            }
+        }
+    }
 }
 
 

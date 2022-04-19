@@ -7,7 +7,7 @@ from service.model import room,hosting
 from getmac import get_mac_address as gma
 
 class ChatConsumer(WebsocketConsumer):
-    async def connect(self):
+    def connect(self):
         print('CONNECTED>>>>>>>>')
         # me=gma()
         # room.objects.create(host1=me,host2=me).save()
@@ -17,7 +17,7 @@ class ChatConsumer(WebsocketConsumer):
         # except hosting.DoesNotExist:
         #     ip_address = hosting.objects.create(status=1,ip=me, pub_date=datetime.datetime.now())
         #     ip_address.save()
-            
+
         # try:
         #     ip_list=hosting.objects.filter(status=1)
         #     if ip_list:
@@ -41,13 +41,13 @@ class ChatConsumer(WebsocketConsumer):
         #     "type":"websocket.accept"
         # })
         self.room='sss'
-        await self.channel_layer.group_add(
+        async_to_sync(self.channel_layer.group_add)(
             self.room,
             self.channel_name
         )
-        await self.accept()
+        self.accept()
         # print(f'[{self.channel_layer}]','you are connected')
-    
+
     def chat_message(self,event):
         message=event['message']
 
@@ -74,5 +74,5 @@ class ChatConsumer(WebsocketConsumer):
             }
         )
 
-    def disconnect(self, close_code):
-        room.objects.filter(room_id=self.room).delete()
+    # def disconnect(self, close_code):
+    #     room.objects.filter(room_id=self.room).delete()

@@ -51,16 +51,18 @@ INSTALLED_APPS = [
 WSGI_APLICATION="talk.wsgi.application"
 ASGI_APPLICATION="talk.asgi.application"
 
+REDIS_HOSTNAME= os.environ.get( "REDIS_HOSTNAME ")
+REDIS_PORT = os.environ.get( "REDIS_PORT" )
 
-# CHANNEL_LAYERS = {
-#     "default": {
-#         "BACKEND": "channels_redis.core.RedisChannelLayer",
-#         "CONFIG": {
-#             # "hosts": [("https://krishna00.herokuapp.com/text/" )],
-#             "hosts": [os.environ.get('REDIS_URL', 'redis://localhost:6379')],
-#         },
-#     },
-# }
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            # "hosts": [("https://krishna00.herokuapp.com/text/" )],
+            "hosts": [(REDIS_HOSTNAME, REDIS_PORT)],
+        },
+    },
+}
 
 # CACHES = {
 #     "default": {
@@ -75,11 +77,11 @@ ASGI_APPLICATION="talk.asgi.application"
 # }
 
 
-CHANNEL_LAYERS = {
-    "default": {
-        "BACKEND": "channels.layers.InMemoryChannelLayer"
-    }
-}
+# CHANNEL_LAYERS = {
+#     "default": {
+#         "BACKEND": "channels.layers.InMemoryChannelLayer"
+#     }
+# }
 
 
 MIDDLEWARE = [

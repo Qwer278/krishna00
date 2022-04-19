@@ -143,7 +143,7 @@
     </script>
   
     <script type="text/javascript">
-        let url=`ws://${window.location.host}/ws/socket-server/`
+        let url=`wss://${window.location.host}/ws/socket-server/`
         var chatSocket= new WebSocket(url)
 
         chatSocket.onopen=function(){

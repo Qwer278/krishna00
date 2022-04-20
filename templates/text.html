@@ -166,6 +166,9 @@
                     </div`)
             }
         };
+        chatSocket.onclose=function(e){
+            console.log('exit...');
+        };
         let form=document.getElementById("task-form");
         form.addEventListener('submit',(e)=>{
             e.preventDefault()

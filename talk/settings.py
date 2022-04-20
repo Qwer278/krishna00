@@ -50,9 +50,18 @@ INSTALLED_APPS = [
 WSGI_APLICATION="talk.wsgi.application"
 ASGI_APPLICATION="talk.asgi.application"
 
-REDIS_HOSTNAME= os.environ.get( "REDIS_HOSTNAME ")
-REDIS_PORT = os.environ.get( "REDIS_PORT" )
+# REDIS_HOSTNAME= os.environ.get( "REDIS_HOSTNAME ")
+# REDIS_PORT = os.environ.get( "REDIS_PORT" )
 
+# CHANNEL_LAYERS = {
+#     "default": {
+#         "BACKEND": "channels_redis.core.RedisChannelLayer",
+#         "CONFIG": {
+#             # "hosts": [("https://krishna00.herokuapp.com/text/" )],
+#             "hosts": [('127.0.0.1', 6379)],
+#         },
+#     },
+# }
 
 # CACHES = {
 #     "default": {
@@ -67,11 +76,11 @@ REDIS_PORT = os.environ.get( "REDIS_PORT" )
 # }
 
 
-# CHANNEL_LAYERS = {
-#     "default": {
-#         "BACKEND": "channels.layers.InMemoryChannelLayer"
-#     }
-# }
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer"
+    }
+}
 
 
 MIDDLEWARE = [
@@ -167,17 +176,6 @@ django_heroku.settings(locals())
 
 STATIC_URL = '/static/'
 STATIC_ROOT= BASE_DIR / 'static'
-
-
-CHANNEL_LAYERS = {
-    "default": {
-        "BACKEND": "channels_redis.core.RedisChannelLayer",
-        "CONFIG": {
-            # "hosts": [("https://krishna00.herokuapp.com/text/" )],
-            "hosts": [('127.0.0.1', 6379)],
-        },
-    },
-}
 
 # SESSION_cOOKIE_SECURE = True
 # CSRF_COOKIE_SECURE = True

@@ -78,7 +78,7 @@ ASGI_APPLICATION="talk.asgi.application"
 
 CHANNEL_LAYERS = {
     "default": {
-        "BACKEND": "channels_redis.core.RedisChannelLayer"
+        "BACKEND": "channels.layers.InMemoryChannelLayer"
     }
 }
 

@@ -1,2 +1,2 @@
 
-chatworker: python manage.py runworker --settings=talk.settings -v2
+web: waitress-serve --port=$PORT talk.wsgi:application

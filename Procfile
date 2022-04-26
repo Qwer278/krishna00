@@ -1,2 +1,2 @@
-web: gunicorn talk.wsgi --log-file -
-web: waitress-serve --port=$PORT talk.wsgi:application
+web: daphne talk.asgi:application --port $PORT --bind 0.0.0.0 -v2
+chatworker: python manage.py runworker --settings=talk.settings -v2

@@ -146,7 +146,7 @@
         var ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
 
         const chatSocket= new WebSocket(
-            ws_scheme
+            'ws'
             + '://'
             + window.location.host
             +'/ws/chat/'

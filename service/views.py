@@ -14,7 +14,7 @@ def homepage(request):
     return render(request,'index.html')
 
 def ip_check(request):
-    room_name=temp
+    room_name=1
     return redirect(reverse("room",kwargs={'instance':str(room_name)}))
 
 def page2(request):

@@ -158,30 +158,32 @@
             // ws.send('hii i am client') 
         };
 
-        // ws.onmessage=function(e){
-        //     let data=JSON.parse(e.data)
-        //     console.log('Data: ',data)
+        ws.onmessage=function(e){
+            let data=JSON.parse(e.data)
+            console.log('Data: ',data)
 
-        //     if (data.type ==='chat'){
-        //         let messages=document.getElementById('messages')
-        //         messages.insertAdjacentHTML('beforeend',`<div>
-        //                 <p class="msg">${data.message}</p>
-        //             </div`)
-        //     }
-        // };
-        // ws.onclose=function(e){
-        //     console.log('exit...');
-        // };
-        // let form=document.getElementById("task-form");
-        // form.addEventListener('submit',(e)=>{
-        //     e.preventDefault()
-        //     $('#change').hide().css('visibility','hidden');
-        //     let message=e.target.message.value
-        //     ws.send(JSON.stringify({
-        //         'message':message
-        //     }))
-        //     form.reset()
-        // });
+            if (data.type ==='chat'){
+                console.log('enter')
+                let messages=document.getElementById('messages')
+                messages.insertAdjacentHTML('beforeend',`<div>
+                        <p class="msg">${data.message}</p>
+                    </div`)
+            }
+        };
+
+        ws.onclose=function(e){
+            console.log('exit...');
+        };
+        let form=document.getElementById("task-form");
+        form.addEventListener('submit',(e)=>{
+            e.preventDefault()
+            $('#change').hide().css('visibility','hidden');
+            let message=e.target.message.value
+            ws.send(JSON.stringify({
+                'message':message
+            }))
+            form.reset()
+        });
     </script>
 
 

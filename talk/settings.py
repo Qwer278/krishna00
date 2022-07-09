@@ -63,17 +63,17 @@ CHANNEL_LAYERS = {
 }
 
 ASGI_APPLICATION="talk.asgi.application"
-# CACHES = {
-#     "default": {
-#          "BACKEND": "redis_cache.RedisCache",
-#          "LOCATION": os.environ.get('REDIS_URL'),
-#          "OPTIONS": {
-#             "CONNECTION_POOL_KWARGS": {
-#                 "ssl_cert_reqs": False
-#             }
-#         }
-#     }
-# }
+CACHES = {
+    "default": {
+         "BACKEND": "redis_cache.RedisCache",
+         "LOCATION": os.environ.get('REDIS_URL'),
+         "OPTIONS": {
+            "CONNECTION_POOL_KWARGS": {
+                "ssl_cert_reqs": False
+            }
+        }
+    }
+}
 
 
 # CHANNEL_LAYERS = {

@@ -15,7 +15,7 @@ from pathlib import Path
 import django_heroku
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+import talk
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -47,8 +47,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'service',
 ]
-WSGI_APLICATION="talk.wsgi.application"
-ASGI_APPLICATION="talk.asgi.application"
+# WSGI_APLICATION="talk.wsgi.application"
+
 
 # REDIS_HOSTNAME= os.environ.get( "REDIS_HOSTNAME ")
 # REDIS_PORT = os.environ.get( "REDIS_PORT" )
@@ -57,12 +57,12 @@ CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
         "CONFIG": {
-            # "hosts": [("https://krishna00.herokuapp.com/text/" )],
             "hosts": [('127.0.0.1', 6379)],
         },
     },
 }
 
+ASGI_APPLICATION="talk.asgi.application"
 # CACHES = {
 #     "default": {
 #          "BACKEND": "redis_cache.RedisCache",
@@ -115,7 +115,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'talk.wsgi.application'
+ASGI_APPLICATION = 'talk.asgi.application'
 
 
 # Database

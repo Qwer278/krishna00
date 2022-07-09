@@ -143,42 +143,45 @@
     </script>
   
     <script type="text/javascript">
-        // var ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
+        var ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
 
-        const chatSocket= new WebSocket(
-            'ws'
+        const ws= new WebSocket(
+            ws_scheme
             + '://'
             + window.location.host
             +'/ws/chat/'
         );
 
-        chatSocket.onopen=function(e){
-            console.log("Connected to the signaling server"); 
-        };
-        chatSocket.onmessage=function(e){
-            let data=JSON.parse(e.data)
-            console.log('Data: ',data)
 
-            if (data.type ==='chat'){
-                let messages=document.getElementById('messages')
-                messages.insertAdjacentHTML('beforeend',`<div>
-                        <p class="msg">${data.message}</p>
-                    </div`)
-            }
+        ws.onopen=function(){
+            console.log("Connected to the signaling server")
+            // ws.send('hii i am client') 
         };
-        chatSocket.onclose=function(e){
-            console.log('exit...');
-        };
-        let form=document.getElementById("task-form");
-        form.addEventListener('submit',(e)=>{
-            e.preventDefault()
-            $('#change').hide().css('visibility','hidden');
-            let message=e.target.message.value
-            chatSocket.send(JSON.stringify({
-                'message':message
-            }))
-            form.reset()
-        });
+
+        // ws.onmessage=function(e){
+        //     let data=JSON.parse(e.data)
+        //     console.log('Data: ',data)
+
+        //     if (data.type ==='chat'){
+        //         let messages=document.getElementById('messages')
+        //         messages.insertAdjacentHTML('beforeend',`<div>
+        //                 <p class="msg">${data.message}</p>
+        //             </div`)
+        //     }
+        // };
+        // ws.onclose=function(e){
+        //     console.log('exit...');
+        // };
+        // let form=document.getElementById("task-form");
+        // form.addEventListener('submit',(e)=>{
+        //     e.preventDefault()
+        //     $('#change').hide().css('visibility','hidden');
+        //     let message=e.target.message.value
+        //     ws.send(JSON.stringify({
+        //         'message':message
+        //     }))
+        //     form.reset()
+        // });
     </script>
 
 

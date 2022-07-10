@@ -62,7 +62,7 @@ CHANNEL_LAYERS = {
     },
 }
 
-ASGI_APPLICATION="talk.asgi.application"
+ASGI_APPLICATION="talk.routing.application"
 # CACHES = {
 #     "default": {
 #          "BACKEND": "redis_cache.RedisCache",

@@ -53,34 +53,34 @@ INSTALLED_APPS = [
 # REDIS_HOSTNAME= os.environ.get( "REDIS_HOSTNAME ")
 # REDIS_PORT = os.environ.get( "REDIS_PORT" )
 
-CHANNEL_LAYERS = {
-    "default": {
-        "BACKEND": "channels_redis.core.RedisChannelLayer",
-        "CONFIG": {
-            "hosts": ["redis-10182.c299.asia-northeast1-1.gce.cloud.redislabs.com:10182"],
-        },
-    },
-}
-
-ASGI_APPLICATION="talk.asgi.application"
-CACHES = {
-    "default": {
-         "BACKEND": "redis_cache.RedisCache",
-         "LOCATION": os.environ.get('REDIS_URL'),
-         "OPTIONS": {
-            "CONNECTION_POOL_KWARGS": {
-                "ssl_cert_reqs": False
-            }
-        }
-    }
-}
-
-
 # CHANNEL_LAYERS = {
 #     "default": {
-#         "BACKEND": "channels.layers.InMemoryChannelLayer"
+#         "BACKEND": "channels_redis.core.RedisChannelLayer",
+#         "CONFIG": {
+#             "hosts": ["redis-10182.c299.asia-northeast1-1.gce.cloud.redislabs.com:10182"],
+#         },
+#     },
+# }
+
+ASGI_APPLICATION="talk.asgi.application"
+# CACHES = {
+#     "default": {
+#          "BACKEND": "redis_cache.RedisCache",
+#          "LOCATION": os.environ.get('REDIS_URL'),
+#          "OPTIONS": {
+#             "CONNECTION_POOL_KWARGS": {
+#                 "ssl_cert_reqs": False
+#             }
+#         }
 #     }
 # }
+
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer"
+    }
+}
 
 
 MIDDLEWARE = [

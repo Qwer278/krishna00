@@ -57,12 +57,12 @@ CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
         "CONFIG": {
-            "hosts": ["redis-10182.c299.asia-northeast1-1.gce.cloud.redislabs.com:10182"],
+            "hosts": [("127.0.0.1", 6379)],
         },
     },
 }
 
-ASGI_APPLICATION="talk.routing.application"
+
 # CACHES = {
 #     "default": {
 #          "BACKEND": "redis_cache.RedisCache",

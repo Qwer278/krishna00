@@ -1,16 +1,26 @@
 from service.views import *
 import json
+from ipware import get_client_ip
 import random
+import time
+# import urllib.request as request
+from easy_timezones.utils import get_ip_address_from_request
 from channels.generic.websocket import WebsocketConsumer
 from asgiref.sync import async_to_sync
 from service.model import room,hosting
 from getmac import get_mac_address as gma
+import datetime
+import socket
 
 class ChatConsumer(WebsocketConsumer):
     def websocket_connect(self,event):
         print('CONNECTED>>>>>>>>')
-        me=gma()
-        room.objects.create(host1=me,host2=me).save()
+        
+        hn=socket.gethostname()
+        ip=socket.gethostbyname(hn)
+        me=ip
+        print(ip)
+        # room.objects.create(host1=me,host2=me).save()
         try:
             hosting.objects.get(ip=me)
 
@@ -20,9 +30,13 @@ class ChatConsumer(WebsocketConsumer):
 
         try:
             ip_list=hosting.objects.filter(status=1)
+            ip_list=ip_list.exclude(ip=me)
+            if not ip_list:
+                time.sleep(5)
             if ip_list:
-                ip_list=ip_list.exclude(ip=me)
+                
                 ip2=random.choice(ip_list)
+                print(ip2)
                 other_user=ip2
                 try:
                     room.objects.filter(host1=me).delete()
@@ -31,6 +45,7 @@ class ChatConsumer(WebsocketConsumer):
                     room.objects.filter(host2=other_user).delete()
                 except:
                     pass
+            
                 room.objects.create(host1=me,host2=other_user).save()
         except:
             pass

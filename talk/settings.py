@@ -53,14 +53,14 @@ INSTALLED_APPS = [
 # REDIS_HOSTNAME= os.environ.get( "REDIS_HOSTNAME ")
 # REDIS_PORT = os.environ.get( "REDIS_PORT" )
 
-# CHANNEL_LAYERS = {
-#     "default": {
-#         "BACKEND": "channels_redis.core.RedisChannelLayer",
-#         "CONFIG": {
-#             "hosts": ["redis-10182.c299.asia-northeast1-1.gce.cloud.redislabs.com:10182"],
-#         },
-#     },
-# }
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": ["redis-10182.c299.asia-northeast1-1.gce.cloud.redislabs.com:10182"],
+        },
+    },
+}
 
 ASGI_APPLICATION="talk.asgi.application"
 # CACHES = {
@@ -76,11 +76,11 @@ ASGI_APPLICATION="talk.asgi.application"
 # }
 
 
-CHANNEL_LAYERS = {
-    "default": {
-        "BACKEND": "channels.layers.InMemoryChannelLayer"
-    }
-}
+# CHANNEL_LAYERS = {
+#     "default": {
+#         "BACKEND": "channels.layers.InMemoryChannelLayer"
+#     }
+# }
 
 
 MIDDLEWARE = [

@@ -5,5 +5,5 @@ from .consumers import ChatConsumer
 
 websocket_urlpattern=[
     # path("ws/",ChatConsumer.as_asgi()),
-    path("ws",ChatConsumer),
+    path(r"ws/",ChatConsumer),
 ]   

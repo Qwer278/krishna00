@@ -4,5 +4,5 @@ from . import consumers
 from .consumers import ChatConsumer
 
 websocket_urlpattern=[
-    url(r"ws/chat",ChatConsumer),
+    path("ws",ChatConsumer),
 ]   

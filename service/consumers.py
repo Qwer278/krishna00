@@ -20,7 +20,7 @@ class ChatConsumer(WebsocketConsumer):
         ip=socket.gethostbyname(hn)
         me=ip
         print(ip)
-        # room.objects.create(host1=me,host2=me).save()
+        room.objects.create(host1=me,host2=me).save()
         try:
             hosting.objects.get(ip=me)
 
@@ -79,11 +79,11 @@ class ChatConsumer(WebsocketConsumer):
         text_data_json=json.loads(text_data)
         message=text_data_json['message']
 
-        # print('message: ',message)
-        # self.send(text_data=json.dumps({
-        #     'type':'chat',
-        #     'message':message,
-        # }))
+        print('message: ',message)
+        self.send(text_data=json.dumps({
+            'type':'chat',
+            'message':message,
+        }))
         async_to_sync(self.channel_layer.group_send)(
             'programmers',
             {

@@ -3,8 +3,7 @@ import json
 from ipware import get_client_ip
 import random
 import time
-# import urllib.request as request
-from easy_timezones.utils import get_ip_address_from_request
+
 from channels.generic.websocket import WebsocketConsumer
 from asgiref.sync import async_to_sync
 from service.model import room,hosting
@@ -44,7 +43,7 @@ class ChatConsumer(WebsocketConsumer):
                     room.objects.filter(host1=other_user).delete()
                     room.objects.filter(host2=other_user).delete()
                 except:
-                    pass
+                    print('Not USER Found>>>>>>')
             
                 room.objects.create(host1=me,host2=other_user).save()
         except:

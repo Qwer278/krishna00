@@ -51,16 +51,16 @@ INSTALLED_APPS = [
 
 
 # REDIS_HOSTNAME= os.environ.get( "REDIS_HOSTNAME ")
-# REDIS_PORT = os.environ.get( "REDIS_PORT" )
+REDIS_PORT = os.environ.get( "REDIS_PORT" )
 
-# CHANNEL_LAYERS = {
-#     "default": {
-#         "BACKEND": "channels_redis.core.RedisChannelLayer",
-#         "CONFIG": {
-#             "hosts": [("127.0.0.1", 6379)],
-#         },
-#     },
-# }
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("https://krishna00.herokuapp.com/text/", REDIS_PORT)],
+        },
+    },
+}
 
 
 # CACHES = {
@@ -76,11 +76,11 @@ INSTALLED_APPS = [
 # }
 
 
-CHANNEL_LAYERS = {
-    "default": {
-        "BACKEND": "channels.layers.InMemoryChannelLayer"
-    }
-}
+# CHANNEL_LAYERS = {
+#     "default": {
+#         "BACKEND": "channels.layers.InMemoryChannelLayer"
+#     }
+# }
 
 
 MIDDLEWARE = [

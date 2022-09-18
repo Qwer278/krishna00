@@ -52,7 +52,7 @@ INSTALLED_APPS = [
 
 # REDIS_HOSTNAME= os.environ.get( "REDIS_HOSTNAME ")
 REDIS_PORT = os.environ.get( "REDIS_PORT" )
-
+print(REDIS_PORT)
 CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",

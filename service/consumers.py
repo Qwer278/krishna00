@@ -5,7 +5,7 @@ import random
 import time
 
 from channels.generic.websocket import WebsocketConsumer
-from asgiref.sync import asyn2c_to_sync
+from asgiref.sync import async_to_sync
 from service.model import room,hosting
 from getmac import get_mac_address as gma
 import datetime

@@ -52,12 +52,12 @@ INSTALLED_APPS = [
 
 # REDIS_HOSTNAME= os.environ.get( "REDIS_HOSTNAME ")
 REDIS_PORT = os.environ.get( "REDIS_PORT" )
-print('PORT>.>>>>>>>>>>>>>>',REDIS_PORT)
+
 CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
         "CONFIG": {
-            "hosts": [("https://krishna00.herokuapp.com/text/", REDIS_PORT)],
+            "hosts": [("https://krishna00.herokuapp.com/text/", 6379)],
         },
     },
 }

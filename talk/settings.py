@@ -61,7 +61,9 @@ CHANNEL_LAYERS = {
         },
     },
 }
-CSRF_TRUSTED_ORIGINS = ['https://krishna00.herokuapp.com/admin/login/']
+
+CSRF_TRUSTED_ORIGINS = ['https://krishna00.herokuapp.com/']
+
 # CACHES = {
 #     "default": {
 #          "BACKEND": "redis_cache.RedisCache",

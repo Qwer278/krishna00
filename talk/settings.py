@@ -36,8 +36,6 @@ ALLOWED_HOSTS = ["*"]
 # Application definition
 
 INSTALLED_APPS = [
-    'channels',
-    'talk',
     'django.contrib.admin',
     'corsheaders',
     'django.contrib.auth',
@@ -46,6 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'service',
+    'channels',
+    'talk',
 ]
 # WSGI_APLICATION="talk.wsgi.application"
 

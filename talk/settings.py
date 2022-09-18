@@ -62,7 +62,7 @@ CHANNEL_LAYERS = {
     },
 }
 
-CSRF_TRUSTED_ORIGINS = ['https://krishna00.herokuapp.com/']
+CSRF_TRUSTED_ORIGINS = ['https://krishna00.herokuapp.com']
 
 # CACHES = {
 #     "default": {

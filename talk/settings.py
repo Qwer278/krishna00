@@ -38,7 +38,10 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
+# db = harperdb.HarperDB(
+#     url=os.environ["DB_URL"],
+#     username=os.environ["DB_USER"],
+#     password=os.environ["DB_PASSWORD"])
 
 # Application definition
 

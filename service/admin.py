@@ -15,10 +15,10 @@ class ipadmin(admin.ModelAdmin):
 class msgadmin(admin.ModelAdmin):
     list_display=['room_id','message']
 
-class UserAdmin(AuthUserAdmin):
-    create_form_class = UserCreationForm
-    # add_form = MyUserCreationForm
-    update_form_class = UserChangeForm
+# class UserAdmin(AuthUserAdmin):
+#     create_form_class = UserCreationForm
+#     # add_form = MyUserCreationForm
+#     update_form_class = UserChangeForm
 
 
 # admin.site.register(User, UserAdmin)

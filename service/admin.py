@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .model import hosting ,room,msg
+from service.model import hosting ,room,msg
 # Register your models here.
 # @admin.register(service)
 # @admin.register(hosting)

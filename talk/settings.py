@@ -99,6 +99,7 @@ CHANNEL_LAYERS = {
         "CONFIG": {
             "hosts": [("https://krishna00.herokuapp.com/", 6379)],
         },
+        'ROUTING': 'service.routing.websocket_urlpattern',
     },
 }
 

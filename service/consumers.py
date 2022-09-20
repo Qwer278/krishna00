@@ -15,7 +15,7 @@ class ChatConsumer(WebsocketConsumer):
     def websocket_connect(self,event):
         print('CONNECTED>>>>>>>>')
         
-        self.scope["user"]=socket.gethostname()
+        hn=socket.gethostname()
         ip=socket.gethostbyname(hn)
         me=ip
         print(ip)

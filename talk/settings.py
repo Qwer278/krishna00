@@ -56,7 +56,7 @@ INSTALLED_APPS = [
 
 # REDIS_HOSTNAME= os.environ.get( "REDIS_HOSTNAME ")
 
-CSRF_TRUSTED_ORIGINS = ['https://krishna00.herokuapp.com']
+CSRF_TRUSTED_ORIGINS = ['http://krishna00.herokuapp.com']
 
 # CACHES = {
 #     "default": {
@@ -97,7 +97,7 @@ CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
         "CONFIG": {
-            "hosts": [("https://krishna00.herokuapp.com/", 6379)],
+            "hosts": [("http://krishna00.herokuapp.com/", 6379)],
         },
         'ROUTING': 'service.routing.websocket_urlpattern',
     },

@@ -97,9 +97,9 @@ CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
         "CONFIG": {
-            "hosts": [("http://krishna00.herokuapp.com/")],
+            "hosts": [("http://krishna00.herokuapp.com/", 6379)],
         },
-        'ROUTING': 'service.routing.websocket_urlpattern',
+        # 'ROUTING': 'service.routing.websocket_urlpattern',
     },
 }
 

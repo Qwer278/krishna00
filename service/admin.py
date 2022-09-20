@@ -7,13 +7,13 @@ from service.model import hosting ,room,msg
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.admin import UserAdmin as AuthUserAdmin
 class serviceAdmin(admin.ModelAdmin):
-    list_display=['room_id','host1','host2']
+    list_display=('room_id','host1','host2')
 
 class ipadmin(admin.ModelAdmin):
-    list_display=['status','pub_date','ip']
+    list_display=('status','pub_date','ip')
 
 class msgadmin(admin.ModelAdmin):
-    list_display=['room_id','message']
+    list_display=('room_id','message')
 
 
 admin.site.register(room,serviceAdmin)

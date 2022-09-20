@@ -30,7 +30,7 @@ DEBUG = True
 # else:
 #     DEBUG = False
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = []
 
 # db = harperdb.HarperDB(
 #     url=os.environ["DB_URL"],
@@ -51,20 +51,10 @@ INSTALLED_APPS = [
     'channels',
     'talk',
 ]
-# WSGI_APLICATION="talk.wsgi.application"
+
 
 
 # REDIS_HOSTNAME= os.environ.get( "REDIS_HOSTNAME ")
-REDIS_PORT = os.environ.get( "REDIS_PORT" )
-
-CHANNEL_LAYERS = {
-    "default": {
-        "BACKEND": "channels_redis.core.RedisChannelLayer",
-        "CONFIG": {
-            "hosts": [("https://krishna00.herokuapp.com/text/", 6379)],
-        },
-    },
-}
 
 CSRF_TRUSTED_ORIGINS = ['https://krishna00.herokuapp.com']
 
@@ -88,6 +78,7 @@ CSRF_TRUSTED_ORIGINS = ['https://krishna00.herokuapp.com']
 # }
 
 
+
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
@@ -98,8 +89,19 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    
 ]
+
+REDIS_PORT = os.environ.get( "REDIS_PORT" )
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("https://krishna00.herokuapp.com/text/", 6379)],
+        },
+    },
+}
+
 
 ROOT_URLCONF = 'talk.urls'
 CORS_ORIGIN_ALLOW_ALL = True
@@ -130,6 +132,15 @@ ASGI_APPLICATION = 'talk.asgi.application'
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
+WSGI_APLICATION="talk.wsgi.application"
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -146,13 +157,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
@@ -178,7 +182,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-django_heroku.settings(locals())
+# django_heroku.settings(locals())
 
 STATIC_URL = '/static/'
 STATIC_ROOT= BASE_DIR / 'static'

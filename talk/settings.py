@@ -30,7 +30,7 @@ DEBUG = True
 # else:
 #     DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 # db = harperdb.HarperDB(
 #     url=os.environ["DB_URL"],

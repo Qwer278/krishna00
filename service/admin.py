@@ -1,11 +1,6 @@
 from django.contrib import admin
 from service.model import hosting ,room,msg
-# Register your models here.
-# @admin.register(service)
-# @admin.register(hosting)
-# @admin.register()
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from django.contrib.auth.admin import UserAdmin as AuthUserAdmin
+
 class serviceAdmin(admin.ModelAdmin):
     list_display=('room_id','host1','host2')
 

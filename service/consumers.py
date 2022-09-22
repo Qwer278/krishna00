@@ -35,7 +35,7 @@ class ChatConsumer(WebsocketConsumer):
             if ip_list:
                 
                 ip2=random.choice(ip_list)
-                print(ip2)
+                # print('other user >>>>>>>>>>>>>>>>>>>>>>',ip2.ip)
                 other_user=ip2
                 try:
                     room.objects.filter(host1=me).delete()
@@ -45,7 +45,7 @@ class ChatConsumer(WebsocketConsumer):
                 except:
                     print('Not USER Found>>>>>>')
             
-                room.objects.create(host1=me,host2=other_user).save()
+                room.objects.create(host1=me,host2=ip2.ip).save()
         except:
             pass
         # self.room='1'

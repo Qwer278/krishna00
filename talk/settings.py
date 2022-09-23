@@ -38,7 +38,7 @@ ALLOWED_HOSTS = ["*"]
 #     password=os.environ["DB_PASSWORD"])
 
 # Application definition
-CSRF_TRUSTED_ORIGINS = ['https://krishna00.herokuapp.com/admin','https://*.127.0.0.1']
+# CSRF_TRUSTED_ORIGINS = []
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -56,7 +56,7 @@ INSTALLED_APPS = [
 
 # REDIS_HOSTNAME= os.environ.get( "REDIS_HOSTNAME ")
 
-CSRF_TRUSTED_ORIGINS = ['http://krishna00.herokuapp.com']
+CSRF_TRUSTED_ORIGINS = ['https://krishna00.herokuapp.com/','http://krishna00.herokuapp.com','https://krishna00.herokuapp.com','https://*.127.0.0.1']
 
 # CACHES = {
 #     "default": {

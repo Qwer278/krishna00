@@ -38,7 +38,7 @@ ALLOWED_HOSTS = ["*"]
 #     password=os.environ["DB_PASSWORD"])
 
 # Application definition
-CSRF_TRUSTED_ORIGINS = ['https://krishna00.herokuapp.com/','https://*.127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['https://krishna00.herokuapp.com/admin','https://*.127.0.0.1']
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',

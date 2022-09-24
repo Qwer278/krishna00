@@ -14,7 +14,6 @@ import socket
 class ChatConsumer(WebsocketConsumer):
     def connect(self):
         print('CONNECTED>>>>>>>>')
-        
         hn=socket.gethostname()
         ip=socket.gethostbyname(hn)
         me=ip

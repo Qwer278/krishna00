@@ -91,7 +91,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-REDIS_PORT = os.environ.get( "REDIS_PORT" )
+# REDIS_PORT = os.environ.get( "REDIS_PORT" )
 # CHANNEL_LAYERS = {
 #     "default": {
 #         "BACKEND": "channels_redis.core.RedisChannelLayer",

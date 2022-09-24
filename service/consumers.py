@@ -62,34 +62,34 @@ class ChatConsumer(WebsocketConsumer):
         # self.accept()
         # print(f'[{self.channel_layer}]','you are connected')
     
-    def chat_message(self,event):
-        message=event['message']
-        print('mesage',event)
-        self.send(text_data=json.dumps({
-            'type':'chat',
-            'message': event['message']
-        }))
+    # def chat_message(self,event):
+    #     message=event['message']
+    #     print('mesage',event)
+    #     self.send(text_data=json.dumps({
+    #         'type':'chat',
+    #         'message': event['message']
+    #     }))
 
     
 
-    def receive(self,text_data):
-        print('Message Received...',text_data)
+    # def receive(self,text_data):
+    #     print('Message Received...',text_data)
         
-        text_data_json=json.loads(text_data)
-        message=text_data_json['message']
+    #     text_data_json=json.loads(text_data)
+    #     message=text_data_json['message']
 
-        print('message: ',message)
-        self.send(text_data=json.dumps({
-            'type':'chat',
-            'message':message,
-        }))
-        async_to_sync(self.channel_layer.group_send)(
-            'programmers',
-            {
-                'type':'chat.message',
-                'message':message
-            }
-        )
+    #     print('message: ',message)
+    #     self.send(text_data=json.dumps({
+    #         'type':'chat',
+    #         'message':message,
+    #     }))
+    #     async_to_sync(self.channel_layer.group_send)(
+    #         'programmers',
+    #         {
+    #             'type':'chat.message',
+    #             'message':message
+    #         }
+    #     )
 
     # def disconnect(self, close_code):
         
